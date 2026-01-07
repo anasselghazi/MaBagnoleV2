@@ -55,5 +55,23 @@ class Article {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+
+ 
+    public static function rechercherParTitre($motCle) {
+        $db = new Database();
+        $pdo = $db->getPdo();
+
+     $sql = "SELECT a.*, t.titre as theme_nom 
+            FROM articles a 
+            LEFT JOIN themes t ON a.id_theme = t.id 
+            WHERE a.titre LIKE ? AND a.statut = 'publie'
+            ORDER BY a.date_publication DESC";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(["%$motCle%"]);
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }
 ?>

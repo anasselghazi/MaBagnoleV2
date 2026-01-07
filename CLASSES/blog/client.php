@@ -67,7 +67,7 @@ class Client {
  
     $stmt = $pdo->prepare("SELECT * FROM clients WHERE email = :email LIMIT 1");
     $stmt->execute([':email' => trim($email)]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_OBJ);
 
     if ($result) {
         return new Client(

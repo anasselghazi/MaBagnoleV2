@@ -38,7 +38,29 @@ class Commentaire {
     public function setsupprime($soft_deleted){
         $this->soft_deleted=$soft_deleted;
     }
+    public static function listerParArticle($id_article) {
+        $db = new Database();
+        $pdo = $db->getPdo();
+        
+        $sql = "SELECT c.*, cl.nom as client_nom 
+                FROM commentaires c 
+                INNER JOIN clients cl ON c.id_client = cl.id 
+                WHERE c.id_article = ? AND c.soft_deleted = 0 
+                ORDER BY c.date_commentaire DESC";
+                
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id_article]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    public static function ajouter($id_client, $id_article, $contenu) {
+        $db = new Database();
+        $pdo = $db->getPdo();
+        
+        $sql = "INSERT INTO commentaires (id_client, id_article, contenu) VALUES (?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([$id_client, $id_article, $contenu]);
+    }
     
 }  
 ?>

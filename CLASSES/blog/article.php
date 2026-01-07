@@ -29,23 +29,31 @@ class Article {
     public function getStatut() { return $this->statut; }
 
     // Méthodes statiques demandées
-    public static function listerParTheme($pdo, $idTheme) {
-        $sql = "SELECT * FROM articles WHERE id_theme = ? AND statut = 'approuve' ORDER BY date_publication DESC";
+     public static function listerParTheme($id_theme) {
+        $db = new Database();
+        $pdo = $db->getPdo();
+        
+        $sql = "SELECT a.*, t.titre as theme_nom 
+                FROM articles a 
+                INNER JOIN themes t ON a.id_theme = t.id 
+                WHERE a.id_theme = ? AND a.statut = 'publie'
+                ORDER BY a.date_publication DESC";
+                
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$idTheme]);
-        $articles = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $articles[] = new Article($row['id'], $row['id_client'], $row['id_theme'], $row['titre'], $row['contenu'], $row['tags'], $row['date_publication'], $row['statut']);
-        }
-        return $articles;
+        $stmt->execute([$id_theme]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public static function trouverParId($pdo, $id) {
-        $sql = "SELECT * FROM articles WHERE id = ?";
+    public static function trouverParId($id) {
+        $db = new Database();
+        $pdo = $db->getPdo();
+        
+        $sql = "SELECT a.*, t.titre as theme_nom 
+                FROM articles a 
+                JOIN themes t ON a.id_theme = t.id 
+                WHERE a.id = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row ? new Article($row['id'], $row['id_client'], $row['id_theme'], $row['titre'], $row['contenu'], $row['tags'], $row['date_publication'], $row['statut']) : null;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>

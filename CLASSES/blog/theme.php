@@ -40,12 +40,15 @@ class Theme {
         }
 
     // Méthode 
-    public static function listerTousActifs($pdo) {
-        $sql = "SELECT * FROM themes WHERE actif = TRUE ORDER BY titre";
-        $stmt = $pdo->query($sql);
+     public static function listerTousActifs() {
+        $db = new Database();
+        $pdo = $db->getPdo();
         
-         $stmt->fetch(PDO::FETCH_ASSOC);
-             
+        $sql = "SELECT * FROM themes WHERE actif = 1 ORDER BY titre ASC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
 }

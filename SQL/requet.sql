@@ -45,4 +45,9 @@ CREATE TABLE commentaires (
     FOREIGN KEY (id_article) REFERENCES articles(id)
 );
 
+INSERT INTO themes (titre, description, actif) VALUES 
+('Conseils Location', 'Astuces et guides pour bien choisir et louer votre voiture.', 1),
+('Entretien Véhicules', 'Tout savoir sur la maintenance et la mécanique automobile.', 1),
+('Sécurité & Assurance', 'Conseils pour rouler en toute sécurité et choisir la bonne assurance.', 1);
+
 

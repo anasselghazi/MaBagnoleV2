@@ -1,11 +1,12 @@
  <?php
- require_once 'classes/Database.php';
-require_once 'classes/Theme.php';
-require_once 'classes/Article.php';
+ require_once '../classes/blog/database.php';
+require_once '../classes/blog/Theme.php';
+require_once '../classes/blog/Article.php';
 use App\Blog\Theme;
 use App\Blog\Article;
 $db = new Database();
  $pdo = $db->getPdo();
+
  $themes = Theme::listerTousActifs();
 
  $id_theme_selectionne = $_GET['id_theme'] ?? null;

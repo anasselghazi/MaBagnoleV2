@@ -1,4 +1,6 @@
  <?php
+ 
+
 class database
 {
    private $host;
@@ -12,7 +14,7 @@ public function __construct()
 {
 
 $this->host="localhost";
-$this->dbname="mabagnolv2_db";
+$this->dbname="mabgnolev2_db";
 $this->user="root";
 $this->password="";
 

@@ -29,6 +29,9 @@ class Theme {
         }
 
     // Setters
+    public function setId() {
+        $this->id=$id;
+    }
     public function setTitre($titre) {
          $this->titre = $titre; 
         }
@@ -41,14 +44,14 @@ class Theme {
 
     // Méthode 
      public static function listerTousActifs() {
-        $db = new Database();
+        $db = new \Database();
         $pdo = $db->getPdo();
         
         $sql = "SELECT * FROM themes WHERE actif = 1 ORDER BY titre ASC";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
     
 }

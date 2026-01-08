@@ -1,13 +1,14 @@
  <?php
-require_once 'classes/Database.php';
-require_once 'classes/Article.php';
+require_once '../classes/blog/database.php';
+require_once '../classes/blog/Article.php';
 use App\Blog\Article;
+
  $db = new Database();
  $pdo = $db->getPdo();
 
 
  
- $id = $_GET['id'] ?? null;
+ $id = $_GET['id'];
 
 if (!$id) {
     header("Location: blog.php");
@@ -17,7 +18,7 @@ if (!$id) {
  $article = Article::trouverParId($id);
 
 if (!$article) {
-    die("Hélas ! Cet article n'existe pas.");
+    die(" Cet article n'existe pas.");
 }
 ?>
 

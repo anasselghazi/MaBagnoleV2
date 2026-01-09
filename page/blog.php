@@ -19,7 +19,7 @@ elseif ($id_theme_selectionne) {
      $articles = Article::listerParTheme($id_theme_selectionne);
 } 
 else {
-     $articles = []; 
+     $articles = Article::listerTout() ; 
 }
 ?>
 
@@ -34,7 +34,13 @@ else {
 
 <nav class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold">🚗 MaBagnole</h1>
-    </nav>
+
+    <!-- BOUTON AJOUT ARTICLE -->
+    <a href="ajouter_article.php"
+       class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg font-semibold">
+        ➕ Ajouter un article
+    </a>
+</nav>
 
 <div class="container mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
 

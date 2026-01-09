@@ -107,5 +107,19 @@ class Article {
     
     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 }
+    public static function listerTout() {
+    $db = new \database();
+    $pdo=$db->getPdo();
+
+    $sql = "SELECT a .*,t.titre as theme_nom 
+    FROM articles a 
+    LEFT JOIN themes t ON a.id_theme = t.id
+    WHERE a.statut='approuve'
+    ORDER BY a.date_publication DESC";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt ->execute();
+    return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
 ?>

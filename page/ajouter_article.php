@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter Article</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<main class="max-w-3xl mx-auto px-6 py-10 bg-white shadow rounded-xl">
+
+  <h1 class="text-3xl font-bold mb-6">✍️ Nouvel Article</h1>
+
+  <form class="space-y-6">
+
+    <input type="text" placeholder="Titre"
+      class="w-full border p-3 rounded" required>
+
+    <select class="w-full border p-3 rounded">
+      <option>Voitures</option>
+      <option>Électrique</option>
+    </select>
+
+    <textarea rows="8" placeholder="Contenu..."
+      class="w-full border p-3 rounded" required></textarea>
+
+    <input type="text" placeholder="Tags (ex: voiture, électrique)"
+      class="w-full border p-3 rounded">
+
+    <button class="bg-green-600 text-white px-6 py-3 rounded font-semibold">
+      ajouter
+    </button>
+
+  </form>
+
+</main>
+
+</body>
+</html>

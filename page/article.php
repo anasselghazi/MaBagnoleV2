@@ -65,6 +65,69 @@ if (!$article) {
                 </div>
             </div>
         </article>
+        <!-- 💬 Section Commentaires -->
+<section class="mt-12 bg-white rounded-2xl shadow-lg p-8">
+
+    <h2 class="text-2xl font-bold mb-6 text-slate-800">
+        💬 Commentaires
+    </h2>
+
+    <!-- ➕ Ajouter un commentaire -->
+    <form class="space-y-4 mb-10">
+        <div>
+            <label class="block font-medium mb-1">Votre nom</label>
+            <input
+                type="text"
+                placeholder="Ex : Anas"
+                class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required>
+        </div>
+
+        <div>
+            <label class="block font-medium mb-1">Votre commentaire</label>
+            <textarea
+                rows="4"
+                placeholder="Écrivez votre commentaire..."
+                class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required></textarea>
+        </div>
+
+        <button
+            type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+            Publier le commentaire
+        </button>
+    </form>
+
+    <!-- 📜 Liste des commentaires -->
+    <div class="space-y-6">
+
+        <!-- Commentaire -->
+        <div class="border-b pb-4">
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-semibold text-slate-800">Youssef</span>
+                <span class="text-sm text-gray-400">12/01/2026</span>
+            </div>
+            <p class="text-gray-700">
+                Très bon article, j’ai appris beaucoup de choses sur les voitures électriques 👍
+            </p>
+        </div>
+
+        <!-- Commentaire -->
+        <div class="border-b pb-4">
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-semibold text-slate-800">Sara</span>
+                <span class="text-sm text-gray-400">10/01/2026</span>
+            </div>
+            <p class="text-gray-700">
+                Design propre et contenu clair, continuez comme ça 👌
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
     </main>
 
 </body>

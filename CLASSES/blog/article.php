@@ -7,19 +7,11 @@ class Article {
     private $id_theme;
     private $titre;
     private $contenu;
-    private $tags;
     private $date_publication;
     private $statut;
 
-    public function __construct($id = null, $id_client = null, $id_theme = null, $titre = '', $contenu = '', $tags = '', $date_publication = null, $statut = 'soumis') {
-        $this->id = $id;
-        $this->id_client = $id_client;
-        $this->id_theme = $id_theme;
-        $this->titre = $titre;
-        $this->contenu = $contenu;
-        $this->tags = $tags;
-        $this->date_publication = $date_publication;
-        $this->statut = $statut;
+    public function __construct() {
+        
     }
 
     // Getters
@@ -31,9 +23,6 @@ class Article {
         }
     public function getContenu() {
          return $this->contenu; 
-        }
-    public function getTag() {
-        return $this->tag;
         }
     public function getDate() {
         return $this->date_publication;
@@ -59,6 +48,17 @@ class Article {
     }
     public function setStatut($statut){
         $this->statut=$statut;
+    }
+
+    public function setThemeId($themeid)
+    {
+        $this->id_theme=$themeid;
+    }
+
+    public function setClientId($client_id)
+    {
+        $this->id_client=$client_id;
+
     }
      
 
@@ -121,5 +121,23 @@ class Article {
     $stmt ->execute();
     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function ajouter() {
+    
+    $sql = "INSERT INTO articles (id_client, id_theme, titre, contenu) 
+            VALUES (:id_client, :id_theme, :titre, :contenu)";
+    
+    $db = new \database(); 
+    $pdo = $db->getPdo();
+    $stmt = $pdo->prepare($sql);
+
+     $result = $stmt->execute([
+        ':id_client' => $this->id_client,
+        ':id_theme'  => $this->id_theme,
+        ':titre'     => $this->titre,
+        ':contenu'   => $this->contenu
+     ]);
+
+    return $result; 
 }
-?>
+}

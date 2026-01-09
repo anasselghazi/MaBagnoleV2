@@ -59,6 +59,20 @@ class Client {
     {
         $this->role=$role;
     }
+    public static function cree($nom, $email, $mot_passe_hash) {
+     $db = new \database();
+    $pdo = $db->getPdo();
+
+     $sql = "INSERT INTO utilisateurs(nom, email, motpasse_hash, role)
+            VALUES(:nom, :email, :motpasse_hash, :role)";
+    
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':mot_passe_hash', $mot_passe_hash);
+     return $stmt->execute();
+}
 
     public static function trouverParEmail($email) {
     $db = new database();
